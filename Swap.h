@@ -16,9 +16,14 @@ struct Swap{
     Swap()
     {
         first = last = -1;
-        income = 0;
+        income = -10000;
     }
     ~Swap(){}
+    void reset()
+    {
+        first = last = -1;
+        income = -10000;
+    }
 };
 
 #endif /* Swap_h */
