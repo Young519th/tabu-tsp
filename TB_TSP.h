@@ -10,6 +10,11 @@
 #define TB_TSP_h
 
 #include "Swap.h"
+#include <iostream>
+#include <math.h>
+#include <stdlib.h>
+#include <ctime>
+using namespace std;
 
 class TB_TSP{
 private:
@@ -21,17 +26,45 @@ private:
     int candidateNumber;
     int** forbidTable;
     Swap* candidates;
+    int* state;
+    int* bestState;
+    double adapt;
+    double bestAdapt;
+    int round;
     double getEuclideanDistance(int, int);
+    void disturb(int*, int);
+    double getAdaptValue(int*, int);
+    void freeTable(int**, int);
 public:
     TB_TSP()
     {
         n = -1;
         forbidLength = 3;
         candidateNumber = 5;
-        candidates = new Swap[candidateNumber];
+        state = 0;
+        adapt = 0;
+        round = 5;
     }
-    ~TB_TSP(){}
+    ~TB_TSP()
+    {
+        delete[] candidates;
+        if (state != 0)
+            delete[] state;
+        if (n != -1)
+        {
+            delete[] x;
+            delete[] y;
+            for (int i = 0 ; i < n ; i ++)
+            {
+                delete[] distance[i];
+                delete[] forbidTable[i];
+            }
+            delete[] distance;
+            delete[] forbidTable;
+        }
+    }
     void initTSP();
+    void solve();
 };
 
 #endif /* TB_TSP_h */
