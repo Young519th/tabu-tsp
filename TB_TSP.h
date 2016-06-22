@@ -39,11 +39,11 @@ public:
     TB_TSP()
     {
         n = -1;
-        forbidLength = 3;
-        candidateNumber = 5;
+        forbidLength = 50;
+        candidateNumber = 50;
         state = 0;
         adapt = 0;
-        round = 5;
+        round = 20000;
     }
     ~TB_TSP()
     {
