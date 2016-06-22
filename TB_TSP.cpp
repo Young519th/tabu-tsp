@@ -76,6 +76,7 @@ void TB_TSP::initTSP()
     for (int i = 0 ; i < n ; i ++)
         forbidTable[i] = new int[n];
     candidates = new Swap[candidateNumber];
+    cout << "TSP start!" << endl;
 }
 
 void TB_TSP::solve()
@@ -150,6 +151,8 @@ void TB_TSP::solve()
             bool isAllForbid = true;
             for (int q = 0 ; q < candidateNumber ; q ++)
             {
+                if (candidates[q].first < 0)
+                    break;
                 if (forbidTable[candidates[q].first][candidates[q].last] == 0)
                 {
                     isAllForbid = false;
